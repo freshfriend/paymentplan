@@ -42,9 +42,3 @@ email : employee@test.com
 password : testcode
 
 Once you logged in with System Administrator account, you can create user or edit previous user if you want.
-
-**Youtube Links :**
-
-[CodeIgniter Admin Panel Demo](https://youtu.be/RFRXUd8LHUM) : This video contain the demo of CodeIgniter Admin Panel.
-
-[How to setup CodeIgniter Admin Panel](https://youtu.be/tU1PbcRj7ww) : This video contain the procedure of setting up CodeIgniter Admin Panel.
