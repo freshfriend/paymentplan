@@ -5,7 +5,7 @@ Unzip the zip file.
 
 Open browser; goto [localhost/phpmyadmin](http://localhost/phpmyadmin).
 
-Create a database with name "cias" and import the file "cias.sql" in that database.
+Create a database with name "payment_plan" and import the file "payment_plan.sql" in that database.
 
 Copy the remaining code into your root directory:
 
