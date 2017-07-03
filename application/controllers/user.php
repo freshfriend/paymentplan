@@ -18,6 +18,7 @@ class User extends BaseController
     {
         parent::__construct();
         $this->load->model('user_model');
+        $this->load->model('plan_model');
         $this->isLoggedIn();   
     }
     
@@ -27,8 +28,31 @@ class User extends BaseController
     public function index()
     {
         $this->global['pageTitle'] = 'PaymentPlan : Dashboard';
+
+        $data['customers'] = $this->user_model->userListing();
+        $data['customerCount'] = count($data['customers']);
+        $today = date('Y-m-d', mktime(0, 0, 0, date("m"), date("d"),   date("Y")));
+        $lastmonth = date('Y-m-d', mktime(0, 0, 0, date("m")-1, date("d"),   date("Y")));
+        $lastyear = date('Y-m-d', mktime(0, 0, 0, date("m")-1, date("d"),   date("Y")-1));
+        $data['newCustomers'] = $this->user_model->newUserListing($lastmonth);
+        $data['newCustomerCount'] = count($data['newCustomers']);
+        $data['oldCustomers'] = $this->user_model->newUserListing($lastyear);
+        $data['oldCustomerCount'] = count($data['oldCustomers']) == 0 ? 1 : count($data['oldCustomers']);
+        $data['newCustomerRate'] = floor($data['newCustomerCount'] / $data['oldCustomerCount'] * 100);
+
+        $data['plans'] = $this->plan_model->certainPlanListing($lastyear);
+        $data['planCount'] = count($data['plans']);
+        $data['activePlans'] = $this->plan_model->certainPlanListing($lastmonth, 1);
+        $data['activePlanCount'] = count($data['activePlans']);
+        $data['completePlans'] = $this->plan_model->certainPlanListing($lastmonth, 2);
+        $data['completePlanCount'] = count($data['completePlans']);
+        $data['outdatedPlans'] = $this->plan_model->outdatedPlanListing($lastmonth);
+        $data['outdatedPlanCount'] = count($data['outdatedPlans']);
+        $data['activePlanRate'] = floor(($data['activePlanCount']) / $data['planCount'] * 100);
+        $data['completePlanRate'] = floor(($data['completePlanCount']) / $data['planCount'] * 100);
+        $data['outdatedPlanRate'] = floor(($data['outdatedPlanCount']) / $data['planCount'] * 100);
         
-        $this->loadViews("dashboard", $this->global, NULL , NULL);
+        $this->loadViews("dashboard", $this->global, $data , NULL);
     }
     
     /**
@@ -36,11 +60,11 @@ class User extends BaseController
      */
     function userListing()
     {
-        if($this->isAdmin() == TRUE)
+        /*if($this->isAdmin() == TRUE)
         {
             $this->loadThis();
         }
-        else
+        else*/
         {
             $this->load->model('user_model');
         
@@ -51,9 +75,10 @@ class User extends BaseController
             
             $count = $this->user_model->userListingCount($searchText);
 
-			$returns = $this->paginationCompress ( "userListing/", $count, 5 );
+			$returns = $this->paginationCompress ( "userListing/", $count, 10 );
             
             $data['userRecords'] = $this->user_model->userListing($searchText, $returns["page"], $returns["segment"]);
+            $data['segment'] = $returns["segment"];
             
             $this->global['pageTitle'] = 'PaymentPlan : User Listing';
             
@@ -66,11 +91,11 @@ class User extends BaseController
      */
     function addNew()
     {
-        if($this->isAdmin() == TRUE)
+        /*if($this->isAdmin() == TRUE)
         {
             $this->loadThis();
         }
-        else
+        else*/
         {
             $this->load->model('user_model');
             $data['roles'] = $this->user_model->getUserRoles();
@@ -104,11 +129,11 @@ class User extends BaseController
      */
     function addNewUser()
     {
-        if($this->isAdmin() == TRUE)
+        /*if($this->isAdmin() == TRUE)
         {
             $this->loadThis();
         }
-        else
+        else*/
         {
             $this->load->library('form_validation');
             
@@ -116,7 +141,7 @@ class User extends BaseController
             $this->form_validation->set_rules('email','Email','trim|required|valid_email|xss_clean|max_length[128]');
             $this->form_validation->set_rules('password','Password','required|max_length[20]');
             $this->form_validation->set_rules('cpassword','Confirm Password','trim|required|matches[password]|max_length[20]');
-            $this->form_validation->set_rules('role','Role','trim|required|numeric');
+            //$this->form_validation->set_rules('role','Role','trim|required|numeric');
             $this->form_validation->set_rules('mobile','Mobile Number','required|min_length[10]|xss_clean');
             
             if($this->form_validation->run() == FALSE)
@@ -128,7 +153,7 @@ class User extends BaseController
                 $name = ucwords(strtolower($this->input->post('fname')));
                 $email = $this->input->post('email');
                 $password = $this->input->post('password');
-                $roleId = $this->input->post('role');
+                $roleId = 1;//$this->input->post('role');
                 $mobile = $this->input->post('mobile');
                 
                 $userInfo = array('email'=>$email, 'password'=>getHashedPassword($password), 'roleId'=>$roleId, 'name'=> $name,
@@ -139,14 +164,14 @@ class User extends BaseController
                 
                 if($result > 0)
                 {
-                    $this->session->set_flashdata('success', 'New User created successfully');
+                    $this->session->set_flashdata('success', 'New Customer created successfully');
                 }
                 else
                 {
-                    $this->session->set_flashdata('error', 'User creation failed');
+                    $this->session->set_flashdata('error', 'Customer creation failed');
                 }
                 
-                redirect('addNew');
+                redirect('userListing');
             }
         }
     }
@@ -158,11 +183,11 @@ class User extends BaseController
      */
     function editOld($userId = NULL)
     {
-        if($this->isAdmin() == TRUE || $userId == 1)
+        /*if($this->isAdmin() == TRUE || $userId == 1)
         {
             $this->loadThis();
         }
-        else
+        else*/
         {
             if($userId == null)
             {
@@ -177,6 +202,51 @@ class User extends BaseController
             $this->loadViews("editOld", $this->global, $data, NULL);
         }
     }
+
+    
+    /**
+     * This function is used load user information
+     * @param number $userId : Optional : This is user id
+     */
+    function viewUser($userId = NULL)
+    {
+        /*if($this->isAdmin() == TRUE || $userId == 1)
+        {
+            $this->loadThis();
+        }
+        else*/
+        {
+            if($userId == null)
+            {
+                redirect('userListing');
+            }
+            
+            $data['roles'] = $this->user_model->getUserRoles();
+            $data['userInfo'] = $this->user_model->getUserInfo($userId);
+            $data['customerPlans'] = $this->plan_model->getCustomerPlans($userId);
+
+            $status['totalPlan'] = 0;
+            $status['totalPaid'] = 0;
+            $status['remaining'] = 0;
+            $planCount = count($data['customerPlans']);
+            
+            for ($i = 0; $i < $planCount; $i ++) {
+                $plan = $data['customerPlans'][$i];
+
+                if ($plan->status == 2)
+                    $status['totalPaid'] += $plan->amount;
+                else {
+                    $status['totalPlan'] += $plan->amount;
+                    $status['remaining'] ++;
+                }
+            }
+            $data['status'] = $status;
+            
+            $this->global['pageTitle'] = 'PaymentPlan : View User';
+            
+            $this->loadViews("viewUser", $this->global, $data, NULL);
+        }
+    }
     
     
     /**
@@ -184,11 +254,11 @@ class User extends BaseController
      */
     function editUser()
     {
-        if($this->isAdmin() == TRUE)
+        /*if($this->isAdmin() == TRUE)
         {
             $this->loadThis();
         }
-        else
+        else*/
         {
             $this->load->library('form_validation');
             
@@ -250,11 +320,11 @@ class User extends BaseController
      */
     function deleteUser()
     {
-        if($this->isAdmin() == TRUE)
+        /*if($this->isAdmin() == TRUE)
         {
             echo(json_encode(array('status'=>'access')));
         }
-        else
+        else*/
         {
             $userId = $this->input->post('userId');
             $userInfo = array('isDeleted'=>1,'updatedBy'=>$this->vendorId, 'updatedDtm'=>date('Y-m-d H:i:s'));

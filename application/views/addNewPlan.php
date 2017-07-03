@@ -2,8 +2,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        <i class="fa fa-users"></i> Customer Management
-        <small>Add / Edit Customer</small>
+        <i class="fa fa-ticket"></i> Plan Management
+        <small>Add / Edit Plan</small>
       </h1>
     </section>
     
@@ -18,67 +18,61 @@
                 
                 <div class="box box-primary">
                     <div class="box-header">
-                        <h3 class="box-title">Enter Customer Details</h3>
+                        <h3 class="box-title">Enter Plan Details</h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
                     
-                    <form role="form" id="addUser" action="<?php echo base_url() ?>addNewUser" method="post" role="form">
+                    <form role="form" id="addPlan" action="<?php echo base_url() ?>onAddNewPlan" method="post" role="form">
                         <div class="box-body">
                             <div class="row">
-                                <div class="col-md-6">                                
+                                <div class="col-md-3">                                
                                     <div class="form-group">
-                                        <label for="fname">Full Name</label>
-                                        <input type="text" class="form-control required" id="fname" name="fname" maxlength="128">
-                                    </div>
-                                    
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="email">Email address</label>
-                                        <input type="text" class="form-control required email" id="email"  name="email" maxlength="128">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="password">Password</label>
-                                        <input type="password" class="form-control required" id="password"  name="password" maxlength="10">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="cpassword">Confirm Password</label>
-                                        <input type="password" class="form-control required equalTo" id="cpassword" name="cpassword" maxlength="10">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="mobile">Mobile Number</label>
-                                        <input type="text" class="form-control required digits" id="mobile" name="mobile" maxlength="10">
-                                    </div>
-                                </div>
-                                <!--<div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="role">Role</label>
-                                        <select class="form-control required" id="role" name="role">
-                                            <option value="0">Select Role</option>
+                                        <label>Select Customer (<?php echo count($customers); ?>)</label>
+                                        <select class="form-control required" id="userId" name="userId">
                                             <?php
-                                            if(!empty($roles))
-                                            {
-                                                foreach ($roles as $rl)
+                                                if(!empty($customers))
                                                 {
-                                                    ?>
-                                                    <option value="<?php echo $rl->roleId ?>"><?php echo $rl->role ?></option>
-                                                    <?php
+                                                    foreach($customers as $i=>$record)
+                                                    {
+                                            ?>
+                                            <option value="<?php echo $record->userId; ?>" <?php echo ($userId==$record->userId)?'selected':'' ?>><?php echo $record->name; ?></option>
+                                            <?php
+                                                    }
                                                 }
-                                            }
                                             ?>
                                         </select>
                                     </div>
-                                </div>-->  
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">                                
+                                    <div class="form-group">
+                                        <label for="title">Title</label>
+                                        <input type="text" class="form-control required" id="title" name="title" maxlength="128">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="summary">Summary</label>
+                                        <textarea type="text" class="form-control" id="summary" name="summary"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="amount">Amount</label>
+                                        <input type="number" class="form-control required number" id="amount" name="amount" maxlength="11">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="payDate">Pay Date</label>
+                                        <input type="date" class="form-control required date" id="payDate" name="payDate">
+                                    </div>
+                                </div>
                             </div>
                         </div><!-- /.box-body -->
     

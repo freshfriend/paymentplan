@@ -50,9 +50,9 @@ $route['logout'] = 'user/logout';
 $route['userListing'] = 'user/userListing';
 $route['userListing/(:num)'] = "user/userListing/$1";
 $route['addNew'] = "user/addNew";
-
 $route['addNewUser'] = "user/addNewUser";
 $route['editOld'] = "user/editOld";
+$route['viewUser/(:num)'] = "user/viewUser/$1";
 $route['editOld/(:num)'] = "user/editOld/$1";
 $route['editUser'] = "user/editUser";
 $route['deleteUser'] = "user/deleteUser";
@@ -60,6 +60,16 @@ $route['loadChangePass'] = "user/loadChangePass";
 $route['changePassword'] = "user/changePassword";
 $route['pageNotFound'] = "user/pageNotFound";
 $route['checkEmailExists'] = "user/checkEmailExists";
+
+$route['planListing'] = 'plan/planListing';
+$route['planListing/(:num)'] = 'plan/planListing/$1';
+$route['addNewPlan'] = "plan/addNewPlan";
+$route['onAddNewPlan'] = "plan/onAddNewPlan";
+$route['editPlan'] = "plan/editPlan";
+$route['editPlan/(:num)'] = "plan/editPlan/$1";
+$route['viewPlan/(:num)'] = "plan/viewPlan/$1";
+$route['onEditPlan'] = "plan/onEditPlan";
+$route['deletePlan'] = "plan/deletePlan";
 
 $route['forgotPassword'] = "login/forgotPassword";
 $route['resetPasswordUser'] = "login/resetPasswordUser";

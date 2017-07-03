@@ -5,3 +5,21 @@ td, th {
 	color:red;
 	font-weight: normal;
 }
+textarea {
+	resize: vertical;
+}
+tr {
+	cursor: pointer;
+}
+.float-right {
+	float: right;
+}
+.opacity-full {
+	opacity: 1 !important;
+}
+.info-box {
+	cursor: pointer;
+}
+.info-box:hover {
+	opacity: 0.6;
+}

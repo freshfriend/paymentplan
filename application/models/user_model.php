@@ -19,10 +19,28 @@ class User_model extends CI_Model
             $this->db->where($likeCriteria);
         }
         $this->db->where('BaseTbl.isDeleted', 0);
-        $this->db->where('BaseTbl.roleId !=', 1);
+        //$this->db->where('BaseTbl.roleId !=', 1);
         $query = $this->db->get();
         
         return count($query->result());
+    }
+
+    /**
+     * This function is used to get the user listing count by lastDate
+     * @param string $lastDate : This is optional search date
+     * @param string $searchText : This is optional search text
+     * @return number $count : This is row count
+     */
+    function newUserListing($lastDate)
+    {
+        $this->db->select('BaseTbl.userId, BaseTbl.email, BaseTbl.name, BaseTbl.mobile');
+        $this->db->from('tbl_users as BaseTbl');
+        $this->db->where('BaseTbl.isDeleted', 0);
+        $this->db->where('BaseTbl.createdDtm >=', $lastDate);
+        //$this->db->where('BaseTbl.roleId !=', 1);
+        $query = $this->db->get();
+        
+        return $query->result();
     }
     
     /**
@@ -32,7 +50,7 @@ class User_model extends CI_Model
      * @param number $segment : This is pagination limit
      * @return array $result : This is result
      */
-    function userListing($searchText = '', $page, $segment)
+    function userListing($searchText = '', $page = 0, $segment = -1)
     {
         $this->db->select('BaseTbl.userId, BaseTbl.email, BaseTbl.name, BaseTbl.mobile, Role.role');
         $this->db->from('tbl_users as BaseTbl');
@@ -44,8 +62,9 @@ class User_model extends CI_Model
             $this->db->where($likeCriteria);
         }
         $this->db->where('BaseTbl.isDeleted', 0);
-        $this->db->where('BaseTbl.roleId !=', 1);
-        $this->db->limit($page, $segment);
+        //$this->db->where('BaseTbl.roleId !=', 1);
+        if ($segment != -1)
+            $this->db->limit($page, $segment);
         $query = $this->db->get();
         
         $result = $query->result();        
@@ -60,7 +79,7 @@ class User_model extends CI_Model
     {
         $this->db->select('roleId, role');
         $this->db->from('tbl_roles');
-        $this->db->where('roleId !=', 1);
+        //$this->db->where('roleId !=', 1);
         $query = $this->db->get();
         
         return $query->result();
@@ -113,7 +132,7 @@ class User_model extends CI_Model
         $this->db->select('userId, name, email, mobile, roleId');
         $this->db->from('tbl_users');
         $this->db->where('isDeleted', 0);
-		$this->db->where('roleId !=', 1);
+		//$this->db->where('roleId !=', 1);
         $this->db->where('userId', $userId);
         $query = $this->db->get();
         

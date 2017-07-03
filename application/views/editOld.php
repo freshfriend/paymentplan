@@ -25,8 +25,8 @@ if(!empty($userInfo))
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        <i class="fa fa-users"></i> User Management
-        <small>Add / Edit User</small>
+        <i class="fa fa-users"></i> Customer Management
+        <small>Add / Edit Customer</small>
       </h1>
     </section>
     
@@ -34,14 +34,14 @@ if(!empty($userInfo))
     
         <div class="row">
             <!-- left column -->
-            <div class="col-md-8">
+            <div class="col-md-12">
               <!-- general form elements -->
                 
                 
                 
                 <div class="box box-primary">
                     <div class="box-header">
-                        <h3 class="box-title">Enter User Details</h3>
+                        <h3 class="box-title">Enter Customer Details</h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
                     
@@ -84,7 +84,7 @@ if(!empty($userInfo))
                                         <input type="text" class="form-control" id="mobile" placeholder="Mobile Number" name="mobile" value="<?php echo $mobile; ?>" maxlength="10">
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6" hidden>
                                     <div class="form-group">
                                         <label for="role">Role</label>
                                         <select class="form-control" id="role" name="role">
@@ -109,6 +109,7 @@ if(!empty($userInfo))
                         <div class="box-footer">
                             <input type="submit" class="btn btn-primary" value="Submit" />
                             <input type="reset" class="btn btn-default" value="Reset" />
+                            <input type="button" class="btn btn-warning float-right" value="Return to Listing" onclick="document.location='<?php echo base_url().'userListing/'; ?>'" />
                         </div>
                     </form>
                 </div>

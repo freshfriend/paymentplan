@@ -31,4 +31,22 @@ $(document).ready(function(){
 			role : { required : "This field is required", selected : "Please select atleast one option" }			
 		}
 	});
+
+	var addPlanForm = $("#addPlan");
+	
+	var validator = addPlanForm.validate({
+		
+		rules:{
+			userId : { required : true },
+			title : { required : true },
+			amount : { required : true, number : true, min : 0.1 },
+			payDate : { required : true, date : true }
+		},
+		messages:{
+			userId :{ required : "This field is required" },
+			title :{ required : "This field is required" },
+			amount : { required : "This field is required", number : "Please enter numbers only", min : "Amount is too low" },
+			payDate : { required : "This field is required", date : "Pay Date can't be past" }	
+		}
+	});
 });
