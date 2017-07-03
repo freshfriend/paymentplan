@@ -5,7 +5,7 @@ Unzip the zip file.
 
 Open browser; goto [localhost/phpmyadmin](http://localhost/phpmyadmin).
 
-Create a database with name "cias" and import the file "cias.sql" in that database.
+Create a database with name "payment_plan" and import the file "payment_plan.sql" in that database.
 
 Copy the remaining code into your root directory:
 
@@ -42,9 +42,3 @@ email : employee@test.com
 password : testcode
 
 Once you logged in with System Administrator account, you can create user or edit previous user if you want.
-
-**Youtube Links :**
-
-[CodeIgniter Admin Panel Demo](https://youtu.be/RFRXUd8LHUM) : This video contain the demo of CodeIgniter Admin Panel.
-
-[How to setup CodeIgniter Admin Panel](https://youtu.be/tU1PbcRj7ww) : This video contain the procedure of setting up CodeIgniter Admin Panel.
