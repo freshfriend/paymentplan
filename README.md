@@ -5,7 +5,7 @@ Unzip the zip file.
 
 Open browser; goto [localhost/phpmyadmin](http://localhost/phpmyadmin).
 
-Create a database with name "payment_plan" and import the file "payment_plan.sql" in that database.
+Create a database with name "paymentplan" and import the file "paymentplan.sql" in that database.
 
 The login screen will appear.
 
