@@ -11,9 +11,7 @@
 $(document).ready(function(){
 	
 	var addUserForm = $("#addUser");
-	
 	var validator = addUserForm.validate({
-		
 		rules:{
 			fname :{ required : true },
 			email : { required : true, email : true, remote : { url : baseURL + "checkEmailExists", type :"post"} },
@@ -33,9 +31,7 @@ $(document).ready(function(){
 	});
 
 	var addPlanForm = $("#addPlan");
-	
-	var validator = addPlanForm.validate({
-		
+	var validatorPlan = addPlanForm.validate({
 		rules:{
 			userId : { required : true },
 			title : { required : true },

@@ -22,7 +22,7 @@
 															<span style="font-size:1px;min-height:0;color:#fff;width:0;display:block">Just one more step.</span>
 															<dl style="list-style-type:none;padding:0;overflow:hidden;margin:0">
 																<dt style="font-size:15px;display:inline-block;width:100%;margin:0;padding:0 0 12px 0;vertical-align:top;padding-bottom:0!important">
-																	<a href="<?php echo base_url(); ?>" title="PaymentPlan" style="display:inline-block" target="_blank">PaymentPlan</a>
+																	<a href="<?php echo base_url(); ?>" title="CodeInsect" style="display:inline-block" target="_blank">CodeInsect</a>
 																</dt>
 																<div style="font-size:15px;display:inline-block;width:100%;margin:0;vertical-align:top"></div>
 															</dl>

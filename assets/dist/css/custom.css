@@ -20,6 +20,9 @@ tr {
 .info-box {
 	cursor: pointer;
 }
-.info-box:hover {
+.small-box:hover {
 	opacity: 0.6;
+}
+.small-box {
+	cursor: pointer;
 }

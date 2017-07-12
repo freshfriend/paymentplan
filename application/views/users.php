@@ -2,7 +2,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        <i class="fa fa-users"></i> Customer Management
+        <i class="fa fa-users"></i> User Management
         <small>Add, Edit, Delete</small>
       </h1>
     </section>
@@ -10,7 +10,7 @@
         <div class="row">
             <div class="col-xs-12 text-right">
                 <div class="form-group">
-                    <a class="btn btn-primary" href="<?php echo base_url(); ?>addNew"><i class="fa fa-plus"></i> Add New Customer</a>
+                    <a class="btn btn-primary" href="<?php echo base_url(); ?>addNew"><i class="fa fa-plus"></i> Add New</a>
                 </div>
             </div>
         </div>
@@ -18,7 +18,7 @@
             <div class="col-xs-12">
               <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Customers List</h3>
+                    <h3 class="box-title">Users List</h3>
                     <div class="box-tools">
                         <form action="<?php echo base_url() ?>userListing" method="POST" id="searchList">
                             <div class="input-group">
@@ -37,28 +37,28 @@
                       <th>Name</th>
                       <th>Email</th>
                       <th>Mobile</th>
-                      <th hidden>Role</th>
+                      <th>Role</th>
                       <th class="text-center">Actions</th>
                     </tr>
                     <?php
                     if(!empty($userRecords))
                     {
-                      foreach($userRecords as $i=>$record)
-                      {
+                        foreach($userRecords as $record)
+                        {
                     ?>
-                    <tr onclick="window.location='<?php echo base_url().'viewUser/'.$record->userId; ?>'">
-                      <td><?php echo $i + 1 + $segment/*$record->userId*/ ?></td>
+                    <tr>
+                      <td><?php echo $record->userId ?></td>
                       <td><?php echo $record->name ?></td>
                       <td><?php echo $record->email ?></td>
                       <td><?php echo $record->mobile ?></td>
-                      <td hidden><?php echo $record->role ?></td>
+                      <td><?php echo $record->role ?></td>
                       <td class="text-center">
                           <a class="btn btn-sm btn-info" href="<?php echo base_url().'editOld/'.$record->userId; ?>"><i class="fa fa-pencil"></i></a>
                           <a class="btn btn-sm btn-danger deleteUser" href="#" data-userid="<?php echo $record->userId; ?>"><i class="fa fa-trash"></i></a>
                       </td>
                     </tr>
                     <?php
-                      }
+                        }
                     }
                     ?>
                   </table>

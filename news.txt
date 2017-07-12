@@ -12,8 +12,8 @@ REPORTING / DASHBOARD NEEDED
 
 *1. List of Active Plans
 *2. List of Complete Plans
-3. Columns (when clicked takes you to summary of plan, payment dates, past payments, remaining and balance)
-- Plan
+*3. Columns (when clicked takes you to summary of plan, payment dates, past payments, remaining and balance)
+- Plans
 - Customer
 - Total Plan
 - Total Paid
@@ -47,3 +47,11 @@ Authorize.net
 login : freshivanov1992
 API Login ID : 52bE3k6Xf
 transaction key : 65b853XaQYe7t9BH
+
+Login ID: testivanov1992 
+Password: 2kJ97Xs6c8E
+
+Sandbox.paypal.com
+yuri.winning.sand@yahoo.com
+4032030066328858
+08/2022

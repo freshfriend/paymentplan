@@ -2,8 +2,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        <i class="fa fa-users"></i> Customer Management
-        <small>Add / Edit Customer</small>
+        <i class="fa fa-users"></i> User Management
+        <small>Add / Edit User</small>
       </h1>
     </section>
     
@@ -11,14 +11,14 @@
     
         <div class="row">
             <!-- left column -->
-            <div class="col-md-12">
+            <div class="col-md-8">
               <!-- general form elements -->
                 
                 
                 
                 <div class="box box-primary">
                     <div class="box-header">
-                        <h3 class="box-title">Enter Customer Details</h3>
+                        <h3 class="box-title">Enter User Details</h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
                     
@@ -60,7 +60,7 @@
                                         <input type="text" class="form-control required digits" id="mobile" name="mobile" maxlength="10">
                                     </div>
                                 </div>
-                                <!--<div class="col-md-6">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="role">Role</label>
                                         <select class="form-control required" id="role" name="role">
@@ -78,7 +78,7 @@
                                             ?>
                                         </select>
                                     </div>
-                                </div>-->  
+                                </div>    
                             </div>
                         </div><!-- /.box-body -->
     

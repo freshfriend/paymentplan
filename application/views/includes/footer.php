@@ -2,9 +2,9 @@
 
     <footer class="main-footer">
         <div class="pull-right hidden-xs">
-          <b>Payment Plan System</b> Sorino Ivanov | Version 1.0
+          <b>PaymentPlan</b> System
         </div>
-        <strong>Copyright &copy; 2017.  </strong> All rights reserved.
+        <strong>Copyright &copy; 2017 <a href="<?php echo base_url(); ?>">PaymentPlan</a>.</strong> All rights reserved.
     </footer>
     
     <!-- jQuery UI 1.11.2 -->

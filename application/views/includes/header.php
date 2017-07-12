@@ -16,6 +16,12 @@
          folder instead of downloading all of them to reduce the load. -->
     <link href="<?php echo base_url(); ?>assets/dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo base_url(); ?>assets/dist/css/custom.css" rel="stylesheet" type="text/css" />
+    <style>
+    	.error{
+    		color:red;
+    		font-weight: normal;
+    	}
+    </style>
     <!-- jQuery 2.1.4 -->
     <script src="<?php echo base_url(); ?>assets/js/jQuery-2.1.4.min.js"></script>
     <script type="text/javascript">
@@ -36,9 +42,9 @@
         <!-- Logo -->
         <a href="<?php echo base_url(); ?>" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"><b>PP</b>S</span>
+          <span class="logo-mini"><b>PPS</b></span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>Payment</b>Plan</span>
+          <span class="logo-lg"><b>PP</b> System</span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
@@ -84,16 +90,28 @@
         <section class="sidebar">
           <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu">
-            <li class="header">MAIN NAVIGATION</li>
+            <li class="header">MAIN MENU</li>
             <li class="treeview">
-              <a href="<?php echo base_url(); ?>dashboard">
+              <a href="<?php echo base_url(); ?>user/index">
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span></i>
               </a>
             </li>
             <li class="treeview">
-              <a href="<?php echo base_url(); ?>userListing">
+              <a href="<?php echo base_url(); ?>customer/index">
                 <i class="fa fa-users"></i>
                 <span>Customers</span>
+              </a>
+            </li>
+            <li class="treeview">
+              <a href="<?php echo base_url(); ?>plan/index" >
+                <i class="fa fa-th-list"></i>
+                <span>Plan List</span>
+              </a>
+            </li>
+            <li class="treeview">
+              <a href="<?php echo base_url(); ?>payment/index" >
+                <i class="fa fa-envelope"></i>
+                <span>Payments</span>
               </a>
             </li>
             <!--<li class="treeview">
@@ -101,18 +119,14 @@
                 <i class="fa fa-plane"></i>
                 <span>New Task</span>
               </a>
-            </li>-->
+            </li>
             <li class="treeview">
-              <a href="<?php echo base_url(); ?>planListing" >
+              <a href="#" >
                 <i class="fa fa-ticket"></i>
-                <span>Plans</span>
+                <span>My Tasks</span>
               </a>
             </li>
-            <?php
-            //if($role == ROLE_ADMIN || $role == ROLE_MANAGER)
-            {
-            ?>
-            <!--<li class="treeview">
+            <li class="treeview">
               <a href="#" >
                 <i class="fa fa-thumb-tack"></i>
                 <span>Task Status</span>
@@ -123,18 +137,23 @@
                 <i class="fa fa-upload"></i>
                 <span>Task Uploads</span>
               </a>
-            </li>-->
-            <?php
-            //}
-            //if($role == ROLE_ADMIN)
-            //{
-            ?>
-            <!--<li class="treeview">
+            </li>
+            <li class="treeview">
               <a href="#" >
                 <i class="fa fa-files-o"></i>
                 <span>Reports</span>
               </a>
             </li>-->
+            <?php
+            if($role == ROLE_ADMIN)
+            {
+            ?>
+            <li class="treeview" hidden>
+              <a href="<?php echo base_url(); ?>userListing">
+                <i class="fa fa-users"></i>
+                <span>Users</span>
+              </a>
+            </li>
             <?php
             }
             ?>

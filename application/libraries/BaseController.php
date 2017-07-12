@@ -13,7 +13,7 @@ class BaseController extends CI_Controller {
 	protected $name = '';
 	protected $roleText = '';
 	protected $global = array ();
-	
+
 	/**
 	 * Takes mixed data and optionally a status code, then creates the response
 	 *
@@ -73,7 +73,7 @@ class BaseController extends CI_Controller {
 	 * This function is used to load the set of views
 	 */
 	function loadThis() {
-		$this->global ['pageTitle'] = 'PaymentPlan : Access Denied';
+		$this->global ['pageTitle'] = 'CodeInsect : Access Denied';
 		
 		$this->load->view ( 'includes/header', $this->global );
 		$this->load->view ( 'access' );
